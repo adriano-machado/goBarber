@@ -17,5 +17,9 @@
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.9.2"
+  },
+  "scripts" : {
+      "dev": "nodemon src/server.js"
+
   }
 }
