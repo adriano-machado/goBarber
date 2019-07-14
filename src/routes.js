@@ -1,6 +1,8 @@
 const { Router } = require('express');
 const multer = require('multer');
 const UserController = require('./app/controllers/UserController');
+const FileController = require('./app/controllers/FileController');
+
 const SessionController = require('./app/controllers/SessionController');
 const authMiddleware = require('./app/middlewares/auth');
 const multerConfig = require('./config/multer');
@@ -15,6 +17,6 @@ routes.post('/session', SessionController.store);
 routes.use(authMiddleware);
 routes.put('/users', UserController.update);
 
-routes.post('/files', upload.single('file'), (req, res) => {});
+routes.post('/files', upload.single('file'), FileController.store);
 
 module.exports = routes;
