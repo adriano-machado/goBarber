@@ -1,9 +1,41 @@
 const Yup = require('yup');
 const { startOfHour, parseISO, isBefore } = require('date-fns');
 const Appointment = require('../models/Appointment');
+const File = require('../models/File');
+
 const User = require('../models/User');
 
 class AppointmentController {
+    async index(req, res) {
+        const { page = 1 } = req.query;
+
+        const appointments = await Appointment.findAll({
+            where: {
+                user_id: req.userId,
+                canceled_at: null,
+            },
+            attributes: ['id', 'date'],
+            order: ['date'],
+            limit: 20,
+            offset: (page - 1) * 20,
+            include: [
+                {
+                    model: User,
+                    as: 'provider',
+                    attributes: ['name', 'id'],
+                    include: [
+                        {
+                            model: File,
+                            as: 'avatar',
+                            attributes: ['url', 'id', 'path'],
+                        },
+                    ],
+                },
+            ],
+        });
+        return res.json(appointments);
+    }
+
     async store(req, res) {
         const schema = Yup.object().shape({
             date: Yup.date().required(),
