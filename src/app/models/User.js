@@ -9,6 +9,7 @@ class User extends Model {
             {
                 name: Sequelize.STRING,
                 email: Sequelize.STRING,
+                // VIRTUAL para campos que não vão existir efetivamente na base
                 password: Sequelize.VIRTUAL,
                 password_hash: Sequelize.STRING,
                 provider: Sequelize.BOOLEAN,
@@ -26,6 +27,7 @@ class User extends Model {
     }
 
     static associate(models) {
+        // Vou ter um id de arquivo armazenado no meu model de usuário
         this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
     }
 

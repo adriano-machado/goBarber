@@ -5,7 +5,9 @@ class UserController {
     async store(req, res) {
         const schema = Yup.object().shape({
             name: Yup.string().required(),
-            email: Yup.string().required(),
+            email: Yup.string()
+                .email()
+                .required(),
             password: Yup.string()
                 .required()
                 .min(6),
@@ -37,7 +39,7 @@ class UserController {
                 .when('oldPassword', (oldPassword, field) => {
                     return oldPassword ? field.required() : field;
                 }),
-            confirm_password: Yup.string().when(
+            confirmPassword: Yup.string().when(
                 'password',
                 (password, field) => {
                     return password
