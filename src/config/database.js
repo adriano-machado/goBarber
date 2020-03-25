@@ -1,11 +1,12 @@
 module.exports = {
     dialect: 'postgres',
-    host: '192.168.99.100',
+    host: 'localhost',
     username: 'postgres',
     password: 'docker',
-    database: 'goBarber',
+    database: 'GoBarber',
     define: {
         timestaps: true,
+        // Criar tabelas a partir dos models usando _, por exemplo user_table
         underscored: true,
         underscoredAll: true,
     },

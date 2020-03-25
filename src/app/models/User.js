@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 
 class User extends Model {
     static init(sequelize) {
+        // Init recebee a conexão como segundo parâmetro
         super.init(
             {
                 name: Sequelize.STRING,
