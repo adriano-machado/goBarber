@@ -58,7 +58,7 @@ class AppointmentController {
 
         if (!isProvider) {
             return res.status(401).json({
-                error: 'You can only creat appointments with providers',
+                error: 'You can only create appointments with providers',
             });
         }
         /**
@@ -70,7 +70,6 @@ class AppointmentController {
                 .status(400)
                 .json({ error: 'Past date are not permited' });
         }
-
         /**
          * Check date availability
          */
@@ -90,7 +89,7 @@ class AppointmentController {
 
         const appointment = await Appointment.create({
             user_id: req.userId,
-            date,
+            date: hourStart,
             provider_id,
         });
 
