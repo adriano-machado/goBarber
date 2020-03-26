@@ -1,9 +1,12 @@
 const Yup = require('yup');
-const { startOfHour, parseISO, isBefore } = require('date-fns');
+const { startOfHour, parseISO, isBefore, format } = require('date-fns');
+const pt = require('date-fns/locale/pt');
+
 const Appointment = require('../models/Appointment');
 const File = require('../models/File');
 
 const User = require('../models/User');
+const Notification = require('../schemas/Notification');
 
 class AppointmentController {
     async index(req, res) {
@@ -49,6 +52,12 @@ class AppointmentController {
         /**
          * Check if provider_id is a provider
          */
+
+        if (provider_id === req.userId) {
+            return res.status(401).json({
+                error: 'You cannot create appointments with you',
+            });
+        }
         const isProvider = await User.findOne({
             where: {
                 id: provider_id,
@@ -61,6 +70,7 @@ class AppointmentController {
                 error: 'You can only create appointments with providers',
             });
         }
+
         /**
          * check for Past Dates
          */
@@ -91,6 +101,23 @@ class AppointmentController {
             user_id: req.userId,
             date: hourStart,
             provider_id,
+        });
+
+        /**
+         * Notify appointment provider
+         */
+
+        const user = await User.findByPk(req.userId);
+        const formattedDate = format(
+            hourStart,
+            "'dia' dd 'de' MMMM', às' H:mm'h'",
+            {
+                locale: pt,
+            }
+        );
+        await Notification.create({
+            content: `Novo agendamento de ${user.name} para ${formattedDate}`,
+            user: provider_id,
         });
 
         return res.json(appointment);
