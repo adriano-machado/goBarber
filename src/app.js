@@ -1,13 +1,13 @@
-require('dotenv/config');
-const express = require('express');
-require('express-async-errors');
-const path = require('path');
-const Sentry = require('@sentry/node');
-const Youch = require('youch');
-const routes = require('./routes');
-const sentryConfig = require('./config/sentry');
+import 'dotenv/config';
+import express from 'express';
+import 'express-async-errors';
+import path from 'path';
+import * as Sentry from '@sentry/node';
+import Youch from 'youch';
+import routes from './routes';
+import sentryConfig from './config/sentry';
 
-require('./database');
+import './database';
 
 class App {
     constructor() {
@@ -44,4 +44,4 @@ class App {
     }
 }
 
-module.exports = new App().server;
+export default new App().server;

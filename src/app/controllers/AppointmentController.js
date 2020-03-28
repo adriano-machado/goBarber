@@ -1,21 +1,15 @@
-const Yup = require('yup');
-const {
-    startOfHour,
-    parseISO,
-    isBefore,
-    format,
-    subHours,
-} = require('date-fns');
-const pt = require('date-fns/locale/pt');
+import * as Yup from 'yup';
+import { startOfHour, parseISO, isBefore, format, subHours } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 
-const Appointment = require('../models/Appointment');
-const File = require('../models/File');
+import Appointment from '../models/Appointment';
+import File from '../models/File';
 
-const User = require('../models/User');
-const Notification = require('../schemas/Notification');
+import User from '../models/User';
+import Notification from '../schemas/Notification';
 
-const CancelationMail = require('../jobs/CancelationMail');
-const Queue = require('../../lib/Queue');
+import CancelationMail from '../jobs/CancelationMail';
+import Queue from '../../lib/Queue';
 
 class AppointmentController {
     async index(req, res) {
@@ -167,4 +161,4 @@ class AppointmentController {
     }
 }
 
-module.exports = new AppointmentController();
+export default new AppointmentController();

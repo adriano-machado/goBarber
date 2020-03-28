@@ -1,7 +1,6 @@
-const { Model } = require('sequelize');
-const Sequelize = require('sequelize');
+import Sequelize, { Model } from 'sequelize';
 
-const { isBefore, subHours } = require('date-fns');
+import { isBefore, subHours } from 'date-fns';
 
 class Appointment extends Model {
     static init(sequelize) {
@@ -38,4 +37,4 @@ class Appointment extends Model {
     }
 }
 
-module.exports = Appointment;
+export default Appointment;

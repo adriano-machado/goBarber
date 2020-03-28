@@ -1,5 +1,5 @@
-const Notification = require('../schemas/Notification');
-const User = require('../models/User');
+import Notification from '../schemas/Notification';
+import User from '../models/User';
 
 class NotificationController {
     async index(req, res) {
@@ -36,4 +36,4 @@ class NotificationController {
     }
 }
 
-module.exports = new NotificationController();
+export default new NotificationController();

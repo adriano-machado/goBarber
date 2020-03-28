@@ -1,7 +1,7 @@
-const { startOfDay, parseISO, endOfDay } = require('date-fns');
-const { Op } = require('sequelize');
-const Appointment = require('../models/Appointment');
-const User = require('../models/User');
+import { startOfDay, parseISO, endOfDay } from 'date-fns';
+import { Op } from 'sequelize';
+import Appointment from '../models/Appointment';
+import User from '../models/User';
 
 class ScheduleController {
     async index(req, res) {
@@ -34,4 +34,4 @@ class ScheduleController {
         return res.json(appointments);
     }
 }
-module.exports = new ScheduleController();
+export default new ScheduleController();

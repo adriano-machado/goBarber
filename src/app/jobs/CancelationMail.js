@@ -1,6 +1,6 @@
-const { pt } = require('date-fns/locale/pt');
-const { format, parseISO } = require('date-fns');
-const Mail = require('../../lib/Mail');
+import { pt } from 'date-fns/locale/pt';
+import { format, parseISO } from 'date-fns';
+import Mail from '../../lib/Mail';
 
 class CancelationMail {
     get key() {
@@ -28,4 +28,4 @@ class CancelationMail {
     }
 }
 
-module.exports = new CancelationMail();
+export default new CancelationMail();

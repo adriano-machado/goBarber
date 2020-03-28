@@ -1,8 +1,8 @@
-const Bee = require('bee-queue');
-const CancelationMail = require('../app/jobs/CancelationMail');
+import Bee from 'bee-queue';
+import CancelationMail from '../app/jobs/CancelationMail';
+import redisConfig from '../config/redis';
 
 const jobs = [CancelationMail];
-const redisConfig = require('../config/redis');
 
 class Queue {
     constructor() {
@@ -37,4 +37,4 @@ class Queue {
         console.log(`Queue ${job.queue.name}: FAILED`, err);
     }
 }
-module.exports = new Queue();
+export default new Queue();

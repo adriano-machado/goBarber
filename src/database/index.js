@@ -1,11 +1,11 @@
-const Sequelize = require('sequelize');
-const mongoose = require('mongoose');
+import Sequelize from 'sequelize';
+import mongoose from 'mongoose';
 
-const databaseConfig = require('../config/database');
+import databaseConfig from '../config/database';
 
-const User = require('../app/models/User');
-const File = require('../app/models/File');
-const Appointment = require('../app/models/Appointment');
+import User from '../app/models/User';
+import File from '../app/models/File';
+import Appointment from '../app/models/Appointment';
 
 const models = [User, File, Appointment];
 
@@ -34,4 +34,4 @@ class Database {
         });
     }
 }
-module.exports = new Database();
+export default new Database();

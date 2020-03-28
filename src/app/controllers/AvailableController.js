@@ -1,4 +1,4 @@
-const {
+import {
     startOfDay,
     endOfDay,
     setHours,
@@ -6,9 +6,9 @@ const {
     setSeconds,
     format,
     isAfter,
-} = require('date-fns');
-const { Op } = require('sequelize');
-const Appointment = require('../models/Appointment');
+} from 'date-fns';
+import { Op } from 'sequelize';
+import Appointment from '../models/Appointment';
 
 class AvailableController {
     async index(req, res) {
@@ -63,4 +63,4 @@ class AvailableController {
     }
 }
 
-module.exports = new AvailableController();
+export default new AvailableController();

@@ -1,5 +1,5 @@
-const Yup = require('yup');
-const User = require('../models/User');
+import * as Yup from 'yup';
+import User from '../models/User';
 
 class UserController {
     async store(req, res) {
@@ -76,4 +76,4 @@ class UserController {
         return res.json({ id, name, provider, email });
     }
 }
-module.exports = new UserController();
+export default new UserController();
